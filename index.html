@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Braai Master is a South African web game. Grill boerewors, lamb chops">
+  <meta name="keywords" content="braai, braai master, South African game, web game, boerewors, grill game">
+  <title>Braai Master</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="top">
+    <h1>This game is proudly South African.</h1>
+    <!-- South African flag built only from divs and CSS shapes (no image files) -->
+    <div class="flag" role="img" aria-label="Flag of South Africa">
+      <div class="flag-red"></div>
+      <div class="flag-blue"></div>
+      <div class="flag-white"></div>
+      <div class="flag-green"></div>
+      <div class="flag-gold"></div>
+      <div class="flag-black"></div>
+    </div>
+  </header>
+
+  <main>
+    <h2>Braai Master</h2>
+    <p class="stats">
+      Score: <span id="score">0</span> &nbsp;|&nbsp;
+      Lives: <span id="lives">3</span> &nbsp;|&nbsp;
+      Level: <span id="level">1</span>
+    </p>
+    <p class="howto">1. Click a meat to cook it. 2. Click it on the braai when it is cooked. 3. Click the guest who ordered it.</p>
+    <p id="message" class="status" role="status">Click a meat in the tray to start cooking.</p>
+
+    <section aria-labelledby="guests-title">
+      <h3 id="guests-title">Hungry guests</h3>
+      <div id="guests" class="guests"></div>
+    </section>
+
+    <section aria-labelledby="tray-title">
+      <h3 id="tray-title">Meat tray</h3>
+      <div id="tray" class="tray"></div>
+    </section>
+
+    <section aria-labelledby="grill-title">
+      <h3 id="grill-title">The braai</h3>
+      <div id="grill" class="grill"></div>
+    </section>
+
+    <button id="restart" class="restart" hidden>Play again</button>
+  </main>
+
+  <script src="game.js"></script>
+</body>
+</html>

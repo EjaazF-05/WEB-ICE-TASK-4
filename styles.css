@@ -1,0 +1,137 @@
+:root {
+  --coal: #1d1815;
+  --ash: #2c2520;
+  --ember: #e8761f;
+  --paper: #f3ebe0;
+  --sa-red: #e03c31;
+  --sa-blue: #001489;
+  --sa-green: #007749;
+  --sa-gold: #ffb81c;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--coal);
+  color: var(--paper);
+  font-family: "Trebuchet MS", "Segoe UI", sans-serif;
+  line-height: 1.5;
+}
+
+.top {
+  padding: 1rem;
+  background: var(--ash);
+  border-bottom: 4px solid var(--ember);
+}
+
+h1 { margin: 0 0 0.75rem; font-size: clamp(1.3rem, 4vw, 2rem); }
+
+/* ---------- South African flag (CSS only) ---------- */
+.flag {
+  position: relative;
+  width: min(100%, 260px);
+  aspect-ratio: 3 / 2;
+  overflow: hidden;
+}
+
+.flag > div { position: absolute; inset: 0; }
+.flag .flag-red  { background: var(--sa-red);  bottom: 50%; }
+.flag .flag-blue { background: var(--sa-blue); top: 50%; }
+.flag .flag-white {
+  background: #fff;
+  clip-path: polygon(0 0, 24% 0, 46% 33.3%, 100% 33.3%, 100% 66.7%, 46% 66.7%, 24% 100%, 0 100%);
+}
+.flag .flag-green {
+  background: var(--sa-green);
+  clip-path: polygon(0 0, 16% 0, 40% 40%, 100% 40%, 100% 60%, 40% 60%, 16% 100%, 0 100%);
+}
+.flag .flag-gold {
+  background: var(--sa-gold);
+  clip-path: polygon(0 9%, 32% 50%, 0 91%);
+}
+.flag .flag-black {
+  background: #000;
+  clip-path: polygon(0 18%, 23% 50%, 0 82%);
+}
+
+/* ---------- Game layout ---------- */
+main { max-width: 720px; margin: 0 auto; padding: 1rem 1rem 3rem; }
+h2 { margin: 0; font-size: 2rem; color: var(--ember); }
+h3 { margin: 1.25rem 0 0.5rem; font-size: 1.1rem; }
+.stats { font-size: 1.2rem; margin: 0.25rem 0 0; }
+.howto { margin: 0.25rem 0 0; font-size: 0.9rem; opacity: 0.8; }
+
+/* Message bar stays at the top of the screen so you always see it */
+.status {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  margin: 0.75rem 0 0;
+  padding: 0.6rem 0.8rem;
+  background: var(--ember);
+  color: #111;
+  font-weight: bold;
+  border-radius: 8px;
+}
+
+.tray, .grill, .guests { display: grid; gap: 0.75rem; }
+.tray  { grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); }
+.grill { grid-template-columns: repeat(3, 1fr); background: var(--ash); padding: 0.75rem; border: 3px solid #555; }
+.guests { grid-template-columns: repeat(3, 1fr); }
+
+button {
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+  border-radius: 8px;
+  border: 2px solid var(--ember);
+  background: var(--ash);
+  padding: 0.75rem;
+}
+button:hover { background: #3a3029; }
+button:focus-visible { outline: 3px solid var(--sa-gold); outline-offset: 2px; }
+
+/* ---------- Braai slots ---------- */
+.slot {
+  min-height: 96px;
+  border-color: #555;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+}
+.slot[data-stage] { color: #111; font-weight: bold; }
+.slot[data-stage="raw"]    { background: #e59a9a; }
+.slot[data-stage="medium"] { background: #b9754f; }
+.slot[data-stage="perfect"]{ background: #d9a03f; }
+.slot[data-stage="burnt"]  { background: #222; color: #ddd; }
+.slot .stage { font-weight: normal; font-size: 0.9rem; }
+.slot.selected { outline: 5px solid var(--sa-gold); outline-offset: 2px; }
+
+/* ---------- Guests (buttons you click to serve) ---------- */
+.guest {
+  min-height: 96px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.2rem;
+  text-align: center;
+  border-color: #555;
+}
+.guest.empty { opacity: 0.4; cursor: default; }
+.guest.wants { border-color: var(--sa-gold); box-shadow: 0 0 12px var(--sa-gold); }
+.guest .g-order { font-size: 0.9rem; }
+.bar { height: 10px; margin-top: 0.4rem; background: #111; border-radius: 5px; overflow: hidden; }
+.guest.empty .bar { visibility: hidden; }
+.fill { height: 100%; background: var(--sa-green); }
+.fill.low { background: var(--sa-red); }
+
+.restart {
+  display: block;
+  margin-top: 1rem;
+  background: var(--ember);
+  color: #111;
+  font-weight: bold;
+}
+.restart[hidden] { display: none; }
